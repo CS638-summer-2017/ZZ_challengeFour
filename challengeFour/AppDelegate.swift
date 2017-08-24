@@ -15,7 +15,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        //create profile for app launch
+        
+        let defaults = [
+            "isFirstLaunch": true
+        ]
+        let userDefaults = UserDefaults.standard
+        
+        userDefaults.register(defaults: defaults)
+        
         return true
     }
 
