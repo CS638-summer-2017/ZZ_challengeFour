@@ -8,7 +8,7 @@
 
 import Foundation
 
-func createAccount() {
+func createAccount(fName:String, lName:String, uName:String, email:String, password:String) {
     
     let url = URL(string: "http://198.150.10.30:8080/fireside/newuser")
     var request = URLRequest(url: url!)
@@ -19,11 +19,11 @@ func createAccount() {
     
     let json = """
         {
-          "password": "newPassword",
-          "firstName": "June",
-          "email": "june@smith.com",
-          "lastName": "Smith",
-          "userName": "june123",
+          "password": "\(password)",
+          "firstName": "\(fName)",
+            "email": "\(email)",
+          "lastName": "\(lName),
+          "userName": "\(uName)",
           "secret": "HskVNwVy6vhffyReLpeFACoYRXbwa&sdj#zz4e#BUXPMd7nvPycrNxuLvX?>iXmzBhyDibiye6KXGb2;Fwhmv)oPEdHJsgAppWc7/{}nZQsWFWpZLWivUndeKgagbLLK"
         }
     """
@@ -63,5 +63,4 @@ func createAccount() {
         
     }
     task.resume()
-    
 }

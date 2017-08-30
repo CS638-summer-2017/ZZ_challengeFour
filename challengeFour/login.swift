@@ -52,6 +52,7 @@ func login(userText:String, passText:String) {
             
             let defaults = UserDefaults.standard
             defaults.set(userToken, forKey: "user-auth-token")
+            //print(defaults.string(forKey: "user-auth-token")!)
          
  
         default:

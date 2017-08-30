@@ -12,16 +12,24 @@ class loginTableViewController: UITableViewController {
 
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
-    
-    @IBAction func loginButton(_ sender: UIBarButtonItem) {
-        
+    @IBOutlet weak var LoggedIn: UITextField!
+    @IBAction func loginButton(_ sender: UIButton) {
         login(userText: usernameField.text!, passText: passwordField.text!)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
+        
+        let userDefaults = UserDefaults.standard
+        if userDefaults.string(forKey: "user-auth-token") == nil {
+            print("FIRST LAUNCH")
+            LoggedIn.text = "YOU ARE NOT LOGGED IN! LOG IN PLEASE!"
+        }else{
+            print(userDefaults.string(forKey: "user-auth-token")!)
+            print("NOT FIRST LAUNCH")
+            LoggedIn.text = "YOU ARE LOGGED IN! TAP SKIP LOG IN!"
+        }        // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
@@ -92,14 +100,28 @@ class loginTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "skipVC" {
+            let controller = segue.destination as! LoggedinViewController
+            if LoggedIn.text == "YOU ARE NOT LOGGED IN! LOG IN PLEASE!" {
+                controller.statusText = false
+            }else{
+                controller.statusText = true
+            }
+        }
+        
+        if segue.identifier == "LoginVC" {
+            let controller = segue.destination as! LoggedinViewController
+            
+            controller.statusText = true
+        }
     }
-    */
+    
 
 }

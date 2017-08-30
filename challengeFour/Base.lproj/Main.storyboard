@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13165.3"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -16,6 +17,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="tgf-DI-a2B">
+                            <rect key="frame" x="0.0" y="317.5" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="LOG IN"/>
+                            <connections>
+                                <action selector="loginButton:" destination="N9P-J9-iFX" eventType="touchUpInside" id="lxb-eI-khn"/>
+                                <segue destination="xD0-Df-oZh" kind="show" identifier="LoginVC" id="5xH-mK-G2e"/>
+                            </connections>
+                        </button>
                         <sections>
                             <tableViewSection headerTitle="username" id="wQC-Vh-S5m">
                                 <cells>
@@ -59,6 +69,27 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="Are you logged in?" id="7ge-Wh-ZCG">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Ls4-qI-8wW">
+                                        <rect key="frame" x="0.0" y="255.5" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ls4-qI-8wW" id="ock-pb-cfm">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hif-fL-FQ0">
+                                                    <rect key="frame" x="8" y="8" width="359" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="N9P-J9-iFX" id="NG2-m9-QEd"/>
@@ -71,13 +102,15 @@
                                 <segue destination="1cX-pG-YVh" kind="show" id="BJp-By-IsO"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="LOG IN" id="Km2-Vb-lZx">
+                        <barButtonItem key="rightBarButtonItem" title="SKIP LOG IN" id="Km2-Vb-lZx">
                             <connections>
                                 <action selector="loginButton:" destination="N9P-J9-iFX" id="kdB-CL-s2O"/>
+                                <segue destination="xD0-Df-oZh" kind="show" identifier="skipVC" id="ZJx-gJ-263"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="LoggedIn" destination="hif-fL-FQ0" id="0z3-qp-ED8"/>
                         <outlet property="passwordField" destination="GHU-XC-hh8" id="sX8-TU-fhU"/>
                         <outlet property="usernameField" destination="sDP-Zy-8Eh" id="rOo-Yd-PSm"/>
                     </connections>
@@ -85,6 +118,33 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7gd-io-GOq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-676" y="40.929535232383813"/>
+        </scene>
+        <!--Loggedin View Controller-->
+        <scene sceneID="nsx-mP-Xur">
+            <objects>
+                <viewController id="xD0-Df-oZh" customClass="LoggedinViewController" customModule="challengeFour" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Jzy-XS-T2R">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="GNE-DR-JoG">
+                                <rect key="frame" x="67" y="269" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="vVR-Xr-ucU"/>
+                    </view>
+                    <connections>
+                        <outlet property="textField" destination="GNE-DR-JoG" id="U3d-u5-EKd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ypb-wW-GrO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="294" y="42"/>
         </scene>
         <!--Create Account-->
         <scene sceneID="UeK-Se-xpn">
@@ -99,6 +159,9 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.40000000600000002" green="1" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                             <state key="normal" title="Create"/>
+                            <connections>
+                                <action selector="createButton:" destination="1cX-pG-YVh" eventType="touchUpInside" id="fr3-Ru-mXc"/>
+                            </connections>
                         </button>
                         <sections>
                             <tableViewSection headerTitle="First Name" id="X1B-eB-QJa">
@@ -213,6 +276,13 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Create Account" id="esX-Ss-gUg"/>
+                    <connections>
+                        <outlet property="Email" destination="nXe-PK-Uhq" id="Ldx-4a-mr1"/>
+                        <outlet property="firstName" destination="iUh-Si-BWo" id="Ked-7M-Naj"/>
+                        <outlet property="lastName" destination="TBj-6r-Vym" id="HLV-aq-jUs"/>
+                        <outlet property="password" destination="lIO-2u-jwb" id="Z7l-mb-zN2"/>
+                        <outlet property="userName" destination="X66-fR-YND" id="A0S-gB-Bhg"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rdu-18-sRf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -221,7 +291,7 @@
         <!--Navigation Controller-->
         <scene sceneID="kmJ-U5-vVt">
             <objects>
-                <navigationController id="tAP-5V-9b6" sceneMemberID="viewController">
+                <navigationController restorationIdentifier="loginVC" storyboardIdentifier="loginVC" id="tAP-5V-9b6" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iMH-yp-CqZ">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -235,4 +305,7 @@
             <point key="canvasLocation" x="-1449" y="41"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="5xH-mK-G2e"/>
+    </inferredMetricsTieBreakers>
 </document>

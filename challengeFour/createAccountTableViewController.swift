@@ -10,6 +10,14 @@ import UIKit
 
 class createAccountTableViewController: UITableViewController {
 
+    @IBOutlet weak var firstName: UITextField!
+    @IBOutlet weak var lastName: UITextField!
+    @IBOutlet weak var userName: UITextField!
+    @IBOutlet weak var Email: UITextField!
+    @IBOutlet weak var password: UITextField!
+    @IBAction func createButton(_ sender: UIButton) {
+        createAccount(fName: firstName.text!, lName: lastName.text!, uName: userName.text!, email: Email.text!, password: password.text!)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
